@@ -1,9 +1,22 @@
+import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/default.css';
 import '../styles/AddRestaurantModal.css';
 import foodCategory from '../../data/foodCategory';
 
-function AddRestaurantModal({ setAddModal }) {
+function AddRestaurantModal({ handleClickAddRestaurant }) {
+  const nameRef = useRef();
+  const categoryRef = useRef();
+  const descriptionRef = useRef();
+
+  const handleAdd = () => {
+    const newRestaurant = {
+      category: categoryRef.current.value,
+      name: nameRef.current.value,
+      description: descriptionRef.current.value,
+    };
+    handleClickAddRestaurant(newRestaurant);
+  };
   return (
     <div className="modal modal--open">
       <div className="modal-backdrop" />
@@ -14,7 +27,7 @@ function AddRestaurantModal({ setAddModal }) {
             <label htmlFor="category" className="text-caption">
               카테고리
             </label>
-            <select id="category" name="category" required>
+            <select id="category" name="category" required ref={categoryRef}>
               <option value="">선택해 주세요</option>
               {foodCategory.map((r) => (
                 <option value={r}>{r}</option>
@@ -26,21 +39,21 @@ function AddRestaurantModal({ setAddModal }) {
             <label htmlFor="name" className="text-caption">
               이름
             </label>
-            <input type="text" name="name" id="name" required />
+            <input type="text" name="name" id="name" required ref={nameRef} />
           </div>
 
           <div className="form-item">
             <label htmlFor="description" className="text-caption">
               설명
             </label>
-            <textarea name="description" id="description" cols="30" rows="5" />
+            <textarea name="description" id="description" cols="30" rows="5" ref={descriptionRef} />
             <span className="help-text text-caption">메뉴 등 추가 정보를 입력해 주세요.</span>
           </div>
 
           <div className="button-container">
             <button
               type="button"
-              onClick={() => setAddModal(false)}
+              onClick={() => handleAdd()}
               className="button button--primary text-caption"
             >
               추가하기
@@ -52,6 +65,6 @@ function AddRestaurantModal({ setAddModal }) {
   );
 }
 AddRestaurantModal.propTypes = {
-  setAddModal: PropTypes.func.isRequired,
+  handleClickAddRestaurant: PropTypes.func.isRequired,
 };
 export default AddRestaurantModal;

@@ -19,7 +19,9 @@ function App() {
   const [totalRestaurants, setTotalRestaurants] = useState(restaurants);
   // 파생값
   const filteredRestaurants =
-    category === '전체' ? totalRestaurants : totalRestaurants.filter((r) => r.category === category);
+    category === '전체'
+      ? totalRestaurants
+      : totalRestaurants.filter((r) => r.category === category);
 
   const selectedRestaurant = totalRestaurants.find((r) => r.id === filteredRestaurantDetail);
 
@@ -29,6 +31,10 @@ function App() {
     setFilteredRestaurantDetail(r.id);
   };
 
+  const handleClickAddRestaurant = (newRestaurant) => {
+    setAddModal(false);
+    setTotalRestaurants((prev) => [...prev, newRestaurant]);
+  };
   return (
     <>
       <Header setAddModal={setAddModal} />
@@ -46,7 +52,7 @@ function App() {
             selectedRestaurant={selectedRestaurant}
           />
         )}
-        {addModal && <AddRestaurantModal setAddModal={setAddModal} />}
+        {addModal && <AddRestaurantModal handleClickAddRestaurant={handleClickAddRestaurant} />}
       </aside>
     </>
   );
