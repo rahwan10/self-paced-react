@@ -16,11 +16,12 @@ function App() {
 
   const [addModal, setAddModal] = useState(false);
 
+  const [totalRestaurants, setTotalRestaurants] = useState(restaurants);
   // 파생값
   const filteredRestaurants =
-    category === '전체' ? restaurants : restaurants.filter((r) => r.category === category);
+    category === '전체' ? totalRestaurants : totalRestaurants.filter((r) => r.category === category);
 
-  const selectedRestaurant = restaurants.find((r) => r.id === filteredRestaurantDetail);
+  const selectedRestaurant = totalRestaurants.find((r) => r.id === filteredRestaurantDetail);
 
   //  핸들러
   const handleClickRestaurantList = (r) => {
