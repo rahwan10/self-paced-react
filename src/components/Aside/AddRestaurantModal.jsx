@@ -10,6 +10,10 @@ function AddRestaurantModal({ handleClickAddRestaurant }) {
   const descriptionRef = useRef();
 
   const handleAdd = () => {
+    if (!nameRef.current.value || !categoryRef.current.value) {
+      alert('카테고리와 이름은 필수 입력값입니다.');
+      return;
+    }
     const newRestaurant = {
       category: categoryRef.current.value,
       name: nameRef.current.value,
