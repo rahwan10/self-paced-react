@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import restaurants from './data/restaurants';
 import Header from './components/Header/Header';
 import CategoryFilter from './components/Main/CategoryFilter';
@@ -16,7 +16,13 @@ function App() {
 
   const [addModal, setAddModal] = useState(false);
 
-  const [totalRestaurants, setTotalRestaurants] = useState(restaurants);
+  const [totalRestaurants, setTotalRestaurants] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/restaurants')
+      .then((res) => res.json())
+      .then((data) => setTotalRestaurants(data));
+  }, []);
   // 파생값
   const filteredRestaurants =
     category === '전체'
