@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import restaurants from './data/restaurants';
 import Header from './components/Header/Header';
 import CategoryFilter from './components/Main/CategoryFilter';
 import RestaurantList from './components/Main/RestaurantList';
