@@ -9,11 +9,11 @@ function App() {
   // 상태값
   const [category, setCategory] = useState('전체');
 
-  const [detailModal, setDetailModal] = useState(false);
+  const [isDetailModal, setIsDetailModal] = useState(false);
 
   const [filteredRestaurantDetail, setFilteredRestaurantDetail] = useState(null);
 
-  const [addModal, setAddModal] = useState(false);
+  const [isAddModal, setIsAddModal] = useState(false);
 
   const [totalRestaurants, setTotalRestaurants] = useState([]);
 
@@ -32,17 +32,17 @@ function App() {
 
   //  핸들러
   const handleClickRestaurantList = (r) => {
-    setDetailModal(true);
+    setIsDetailModal(true);
     setFilteredRestaurantDetail(r.id);
   };
 
   const handleClickAddRestaurant = (newRestaurant) => {
-    setAddModal(false);
+    setIsAddModal(false);
     setTotalRestaurants((prev) => [...prev, newRestaurant]);
   };
   return (
     <>
-      <Header setAddModal={setAddModal} />
+      <Header setIsAddModal={setIsAddModal} />
       <main>
         <CategoryFilter category={category} setCategory={setCategory} />
         <RestaurantList
@@ -51,13 +51,13 @@ function App() {
         />
       </main>
       <aside>
-        {detailModal && (
+        {isDetailModal && (
           <RestaurantDetailModal
-            setDetailModal={setDetailModal}
+            setIsDetailModal={setIsDetailModal}
             selectedRestaurant={selectedRestaurant}
           />
         )}
-        {addModal && <AddRestaurantModal handleClickAddRestaurant={handleClickAddRestaurant} />}
+        {isAddModal && <AddRestaurantModal handleClickAddRestaurant={handleClickAddRestaurant} />}
       </aside>
     </>
   );
