@@ -3,13 +3,13 @@ import addButton from '../../../templates/add-button.png';
 import '../styles/default.css';
 import '../styles/Header.css';
 
-function Header({ setAddModal }) {
+function Header({ setIsAddModal }) {
   return (
     <header className="gnb">
       <h1 className="gnb__title text-title">점심 뭐 먹지</h1>
       <button
         type="button"
-        onClick={() => setAddModal(true)}
+        onClick={() => setIsAddModal(true)}
         className="gnb__button"
         aria-label="음식점추가"
       >
@@ -20,6 +20,6 @@ function Header({ setAddModal }) {
 }
 
 Header.propTypes = {
-  setAddModal: PropTypes.func.isRequired,
+  setIsAddModal: PropTypes.func.isRequired,
 };
 export default Header;
