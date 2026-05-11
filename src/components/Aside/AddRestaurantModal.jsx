@@ -56,7 +56,7 @@ function AddRestaurantModal({ handleClickAddRestaurant }) {
 
           <div className="button-container">
             <button
-              type="button"
+              type="submit"
               onClick={() => handleAdd()}
               className="button button--primary text-caption"
             >
