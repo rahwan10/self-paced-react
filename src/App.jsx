@@ -11,7 +11,7 @@ function App() {
 
   const [isDetailModal, setIsDetailModal] = useState(false);
 
-  const [filteredRestaurantDetail, setFilteredRestaurantDetail] = useState(null);
+  const [selectedRestaurantId, setSelectedRestaurantId] = useState(null);
 
   const [isAddModal, setIsAddModal] = useState(false);
 
@@ -28,12 +28,12 @@ function App() {
       ? totalRestaurants
       : totalRestaurants.filter((r) => r.category === category);
 
-  const selectedRestaurant = totalRestaurants.find((r) => r.id === filteredRestaurantDetail);
+  const selectedRestaurant = totalRestaurants.find((r) => r.id === selectedRestaurantId);
 
   //  핸들러
   const handleClickRestaurantList = (r) => {
     setIsDetailModal(true);
-    setFilteredRestaurantDetail(r.id);
+    setSelectedRestaurantId(r.id);
   };
 
   const handleClickAddRestaurant = (newRestaurant) => {
